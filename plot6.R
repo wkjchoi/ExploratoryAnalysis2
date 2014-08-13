@@ -19,33 +19,31 @@ plot6 <- function(){
   Year <- c(1999,2002,2005,2008)
   dfC <- data.frame(Emissions, Year)
   
-  par(mar=c(5,5,2,3))
+  png("plot6.png",1000,540)
+  
+  par(mar=c(5,4,2,1))
   par(mfrow=c(1,2))
-
-  png("plot6.png",960,480)
+  par(oma=c(1,1,3.2,1))
   
   with(dfB, plot(Year,Emissions,type="o"
-                ,ylab="Emissions, tons(in blue)"))
-  
-          with(dfB,text(Year,Emissions
-               ,prettyNum(Emissions,big.mark=",")
-               ,pos=1,col="blue",cex=0.6))
-  
-          with(dfB,text(Year,Emissions,Year
-               ,pos=3,cex=1))
-  
+                 ,ylab="Emissions, tons(in blue)")
+                 ,xlim=c(1998,2011),ylim=c(400,2800))  
+            with(dfB,text(Year,Emissions
+                ,prettyNum(Emissions,big.mark=",")
+                ,pos=1,col="blue",cex=0.6))
+            with(dfB,text(Year,Emissions,Year
+                ,pos=3,cex=0.9))
+            with(dfB,title(main="Baltimore",cex.main=0.9))
   
   with(dfC, plot(Year,Emissions,type="o"
-                ,ylab="Emissions, tons(in blue)"))
-  
-          with(dfC,text(Year,Emissions
-               ,prettyNum(Emissions,big.mark=",")
-               ,pos=1,col="blue",cex=0.6))
-  
-          with(dfC,text(Year,Emissions,Year
-               ,pos=3,cex=1))
-  
-  
+                 ,ylab="Emissions, tons(in red)")
+                 ,xlim=c(1998,2009),ylim=c(9000,30000))
+            with(dfC,text(Year,Emissions
+                ,prettyNum(Emissions,big.mark=",")
+                ,pos=1,col="red",cex=0.6))  
+            with(dfC,text(Year,Emissions,Year
+                ,pos=3,cex=0.9))
+            with(dfB,title(main="California",cex.main=0.9))
   
   title(main="Total Emissions from Motor Vehicle Sources in Baltimore from 1999 to 2008", outer=TRUE)
   
